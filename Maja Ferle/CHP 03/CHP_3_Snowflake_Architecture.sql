@@ -1,6 +1,5 @@
 select * from SNOWFLAKE_SAMPLE_DATA.INFORMATION_SCHEMA.TABLES;
 
-
 use role ACCOUNTADMIN;
 create database SALES;
 create schema SALESDATA;
