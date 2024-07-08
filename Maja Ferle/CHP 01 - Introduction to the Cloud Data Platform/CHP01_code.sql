@@ -41,7 +41,21 @@ GRANT USAGE ON WAREHOUSE VWH_TELEMETRY_ETL TO ROLE WEBMATCH_ENGINEER;
 
 
 
+-- Profiling del rol de WEBMATCH_ADMINISTRATOR
+-- El administrador debe poder crear stages en el
+--esquema de telemetría para cargar datos telemétricos.
+USE ROLE SECURITYADMIN;
+GRANT CREATE STAGE ON SCHEMA DB_WEBMATCH.telemetry TO ROLE WEBMATCH_ADMINISTRATOR;
 
-use database snowflake;
-use schema account_usage;
-CREATE ROLE IF NOT EXISTS ;
+
+
+-- Creamos usuarios y controlamos la gestión de acceso a los recursos.
+USE ROLE USERADMIN;
+CREATE USER IF NOT EXISTS aaron_gonzalez WITH PASSWORD='aaron';
+CREATE USER IF NOT EXISTS dinorah_zamora WITH PASSWORD='dinorah';
+CREATE USER IF NOT EXISTS carla_cisneros WITH PASSWORD='carla';
+
+USE ROLE SECURITYADMIN;
+GRANT ROLE WEBMATCH_ADMINISTRATOR TO USER AARON_GONZALEZ;
+GRANT ROLE WEBMATCH_ENGINEER TO USER DINORAH_ZAMORA;
+GRANT ROLE WEBMATCH_ANALYST TO USER CARLA_CISNEROS;
